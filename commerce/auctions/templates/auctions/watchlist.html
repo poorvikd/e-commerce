@@ -10,7 +10,8 @@
         font-weight: normal;
         src: local('Raspoutine Medium'), url('RaspoutineMedium_TB.woff') format('woff');
     }
-    .heading-bg{
+
+    .heading-bg {
         padding: 5px;
         margin: 10px;
         font-style: bold;
@@ -18,17 +19,19 @@
         color: #ffffff;
         text-align: center;
     }
-    #items-bg{
+
+    #items-bg {
         display: flex;
         flex-wrap: wrap;
         margin: 10px;
         width: fit-content;
         background-color: #d79ca6;
     }
-    .container{
+
+    .container {
         align-content: center;
         background-color: #ffffff;
-        border-color:  #d79ca6;
+        border-color: #d79ca6;
         display: block;
         border-style: outset;
         padding: 10px;
@@ -37,48 +40,51 @@
         width: 250px;
         flex: 0 0 200px;
         margin: 10px;
-        
+
     }
-    .container:hover{
+
+    .container:hover {
         border-color: #e42378;
         cursor: hand;
         cursor: pointer;
         opacity: .9;
     }
-    .img-div{
+
+    .img-div {
         width: 200px;
         height: 150px;
     }
-    h6{
+
+    h6 {
         font-family: Raspoutine Medium;
         color: #e42378;
         font-size: 20px;
         font-style: bold;
     }
-    #text-info{
-        font-family: Raspoutine Medium;  
-        color: #d79ca6 ;
+
+    #text-info {
+        font-family: Raspoutine Medium;
+        color: #d79ca6;
     }
 </style>
 {%endblock%}
 {% block body %}
 <div class='heading-bg'>
-    <h2>Active Listings</h2>
+    <h2>Watchlist</h2>
 </div>
 <div id='items-bg'>
     {% for item in items%}
-    <a style="text-decoration:none;" href="{% url 'listing' item.id %}">
-    <div class='container' style="align-content:center;">
-        <h6>{{item.name}}</h6>
-        <div class='img-div'><img src="{{item.photo.url}}" style="height: 150px; width:auto;"></div> 
-        <br>
-        {% if item.name in watchlist%}
-        <span class="badge badge-pill badge-primary">WatchList</span>
-        {%endif%}
-        <div id='text-info'><p><strong>Current Bid:</strong> ${{item.price}}</p>
-                            <p><strong>Description:</strong> {{item.description}}</p></div>
-    </div></a>
+    <a style="text-decoration:none;" href="{% url 'listing' item.item.id %}">
+        <div class='container' style="align-content:center;">
+            <h6>{{item.item.name}}</h6>
+            <div class='img-div'><img src="{{item.item.photo.url}}" style="height: 150px; width:auto;"></div>
+            <br>
+            <div id='text-info'>
+                <p><strong>Current Bid:</strong> ${{item.item.price}}</p>
+                <p><strong>Description:</strong> {{item.item.description}}</p>
+            </div>
+        </div>
+    </a>
     {%endfor%}
-
 </div>
 {% endblock %}

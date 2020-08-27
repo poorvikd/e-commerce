@@ -1,0 +1,84 @@
+{% extends "auctions/layout.html" %}
+{% block style%}
+<style>
+    .heading-bg{
+        padding: 5px;
+        margin: 10px;
+        font-style: bold;
+        font-family: Raspoutine Medium;
+        color: #ffffff;
+        text-align: center;
+    }
+    .body{
+        margin: 25px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-color:  #d79ca6;
+        border-style: outset;
+        min-height: 350px;
+        display: flex;
+    }
+    #img-bg{
+        width: max-content;
+        height: 220px;
+        margin: 10px;
+        padding: 10px;
+    }
+    .image{
+        height: 300px;
+        width: auto;
+    }
+    #text{
+        margin: 10px;
+        padding: 10px;
+    }
+    #text-info{
+        font-family: Raspoutine Medium;  
+        color: #e42378 ;
+        font-size: 20px;
+    }
+    #sub{
+        background-color:#d79ca6 ; 
+        color:#ffffff;
+        border-color: #d79ca6;
+    }
+    #sub:hover{
+        border-width: 3px;
+        border-color: #e42378;
+        cursor: hand;
+        cursor: pointer;
+        opacity: .9;
+    }
+</style>
+{%endblock%}
+{% block body %}
+<div class='heading-bg'>
+    <h2>{{items.name}}</h2>
+</div>
+<div class='body'>
+    <div id='img-bg'><img class='image' src="{{items.photo.url}}"></div>
+    <div id='text-info'>
+        <p><strong>Created By:</strong> {{items.created_by}}</p>
+        <p><strong>Current Bid:</strong> ${{items.price}}</p>
+        {% if user.is_authenticated %}
+        {% if not present%}
+        <form action="{% url 'listing' items.id %}" method="post" class="reg">
+        {% csrf_token %}
+        <p> 
+            <input class="btn btn-primary" id='sub'type="submit" value="Add to WatchList">
+        </p>
+        </form>
+        {%else%}
+        <p>
+            <span class="badge badge-pill badge-light">WatchList</span>
+        </p>
+        {%endif%}
+        {%endif%}
+        <p><strong>Description:</strong> {{items.description}}</p>
+        {% if items.additional_description != None %}
+            <p style="font-size: 15px;">{{items.additional_description}}</p>
+        {%endif%}
+    </div>
+    </div>
+</div>
+{% endblock %}
