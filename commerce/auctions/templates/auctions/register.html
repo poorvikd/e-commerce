@@ -1,6 +1,13 @@
 {% extends "auctions/layout.html" %}
 {% block style %}
 <style>
+    .heading-bg{
+        padding: 5px;
+        margin: 10px;
+        font-style: bold;
+        font-family: Raspoutine Medium;
+        color: #ffffff;
+    }
     #body{
         margin: 5px;
         padding:20px;
@@ -11,12 +18,19 @@
         margin: 5px;
         width: 500px;
     }
+    #text-info{
+        font-family: Raspoutine Medium;  
+        color: #ffffff ;
+        font-size: 20px;
+    }
 </style>
 {% endblock %}
 
 {% block body %}
     <div id="body">
-    <h2>Register</h2>
+    <div class='heading-bg'>
+        <h1>Register</h1>
+    </div>
 
     {% if message %}
         <div>{{ message }}</div>
@@ -45,6 +59,7 @@
         <input class="btn btn-primary" type="submit" value="Register" style="background-color:#ffd3b5 ; color:#e42378; border-color:#ffd3b5;">
     </form>
 
-    Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+    <div id="text-info">Already have an account? 
+        <p><a href="{% url 'login' %}"><button type="button" class="btn btn-primary" style="background-color:#ffd3b5 ; color:#e42378; border-color:#ffd3b5;">Log in</button></a></p></div>
     </div>
 {% endblock %}

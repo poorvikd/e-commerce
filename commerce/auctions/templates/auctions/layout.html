@@ -10,7 +10,7 @@
         {% endblock %}
     </head>
     <body style="background-color:#d79ca6 ;">
-        <img src="{% static 'Images/logo.png' %}">
+        <img src="{% static 'Images/anchor.jpg' %}">
         <div id="top">
             <div style="position: relative;right: 40px;">
             anchor
@@ -31,15 +31,21 @@
             <li class="nav-item">
                 <a class="nav-link" style="float:right; "href="{% url 'index' %}">Active Listings</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'inactive' %}">Inactive Listings</a>
+            </li>
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}" >Log Out</a>
+                    <a class="nav-link" href="{% url 'categories' %}">Categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'create' %}">Create Listing</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'watchlist' user.id %}">WatchList</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                 </li>
             {% else %}
                 <li class="nav-item">

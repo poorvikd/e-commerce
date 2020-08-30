@@ -16,7 +16,20 @@ class CustomUserAdmin(UserAdmin):
         ('Permissions', {
          'fields': ( 'is_staff', )}),
     )
+class CommentInline(admin.StackedInline):
+    model=Comment
+class BidInline(admin.StackedInline):
+    model=Bid
+class AuctionAdmin(admin.ModelAdmin):
+    inlines=[
+        CommentInline,
+        BidInline,
+    ]
+
+
 admin.site.register(User,CustomUserAdmin)
-admin.site.register(AuctionItem)
+admin.site.register(AuctionItem,AuctionAdmin)
 admin.site.register(WatchList)
 admin.site.register(Bid)
+admin.site.register(Winner)
+admin.site.register(Comment)
